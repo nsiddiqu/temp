@@ -1,0 +1,28 @@
+$server   = "YOUR_SERVER"
+$database = "YOUR_DATABASE"
+$outDir   = "C:\CSVExports"
+
+$conn = New-Object System.Data.SqlClient.SqlConnection
+$conn.ConnectionString = "Server=$server;Database=$database;Integrated Security=True;"
+$conn.Open()
+
+# Get all table names
+$tables = (New-Object System.Data.SqlClient.SqlCommand(
+    "SELECT TABLE_SCHEMA, TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'",
+    $conn)).ExecuteReader()
+
+$tableList = @()
+while ($tables.Read()) { $tableList += "$($tables[0]).$($tables[1])" }
+$tables.Close()
+
+foreach ($table in $tableList) {
+    $cmd    = New-Object System.Data.SqlClient.SqlCommand("SELECT * FROM $table", $conn)
+    $reader = $cmd.ExecuteReader()
+    $dt     = New-Object System.Data.DataTable
+    $dt.Load($reader)
+
+    $file = "$outDir\$($table.Replace('.','_')).csv"
+    $dt | Export-Csv -Path $file -NoTypeInformation -Encoding UTF8
+    Write-Host "Exported: $file"
+}
+$conn.Close()
