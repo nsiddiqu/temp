@@ -1,0 +1,62 @@
+/****** Object:  Table [dbo].[server_registry]    Script Date: 2026-04-19 9:28:05 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[server_registry](
+	[server_id] [int] IDENTITY(1,1) NOT NULL,
+	[display_name] [nvarchar](128) NOT NULL,
+	[host_name] [nvarchar](256) NOT NULL,
+	[port] [int] NOT NULL,
+	[db_name] [nvarchar](128) NOT NULL,
+	[db_driver] [nvarchar](128) NOT NULL,
+	[db_user] [nvarchar](128) NULL,
+	[db_password] [nvarchar](256) NULL,
+	[environment] [nvarchar](32) NOT NULL,
+	[tags] [nvarchar](256) NULL,
+	[is_active] [bit] NOT NULL,
+	[added_at] [datetime2](7) NOT NULL,
+	[added_by] [nvarchar](128) NOT NULL,
+	[last_seen] [datetime2](7) NULL,
+	[last_status] [nvarchar](32) NULL,
+	[notes] [nvarchar](512) NULL,
+	[auth_type] [nvarchar](16) NOT NULL,
+ CONSTRAINT [PK_server_registry] PRIMARY KEY CLUSTERED 
+(
+	[server_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_server_registry_host] UNIQUE NONCLUSTERED 
+(
+	[host_name] ASC,
+	[port] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[server_registry] ADD  DEFAULT ((1433)) FOR [port]
+GO
+
+ALTER TABLE [dbo].[server_registry] ADD  DEFAULT ('master') FOR [db_name]
+GO
+
+ALTER TABLE [dbo].[server_registry] ADD  DEFAULT ('ODBC Driver 17 for SQL Server') FOR [db_driver]
+GO
+
+ALTER TABLE [dbo].[server_registry] ADD  DEFAULT ('prod') FOR [environment]
+GO
+
+ALTER TABLE [dbo].[server_registry] ADD  DEFAULT ((1)) FOR [is_active]
+GO
+
+ALTER TABLE [dbo].[server_registry] ADD  DEFAULT (sysutcdatetime()) FOR [added_at]
+GO
+
+ALTER TABLE [dbo].[server_registry] ADD  DEFAULT (suser_sname()) FOR [added_by]
+GO
+
+ALTER TABLE [dbo].[server_registry] ADD  DEFAULT ('sql') FOR [auth_type]
+GO
+
+
