@@ -1,0 +1,39 @@
+SQL Server using default system service account and I have granted "MSSQLSERVER" account full control permission on each folder Data1,Data2 .. Data6 
+
+icacls E:\Data2 /grant "NT SERVICE\MSSQLSERVER:(OI)(CI)M"
+icacls E:\Data3 /grant "NT SERVICE\MSSQLSERVER:(OI)(CI)M"
+icacls E:\Data4 /grant "NT SERVICE\MSSQLSERVER:(OI)(CI)M"
+icacls E:\Data5 /grant "NT SERVICE\MSSQLSERVER:(OI)(CI)M"
+icacls E:\Data6 /grant "NT SERVICE\MSSQLSERVER:(OI)(CI)M"
+
+
+
+
+Msg 3634, Level 16, State 1, Line 1
+The operating system returned the error '5(Access is denied.)' while attempting 'RestoreContainer::ValidateTargetForCreation' on 'E:\Data1\EMR_GIC_PROD_DATA1.ndf'.
+Msg 3156, Level 16, State 5, Line 1
+File 'EMR_GIC_PROD_DATA1' cannot be restored to 'E:\Data1\EMR_GIC_PROD_DATA1.ndf'. Use WITH MOVE to identify a valid location for the file.
+Msg 3634, Level 16, State 1, Line 1
+The operating system returned the error '5(Access is denied.)' while attempting 'RestoreContainer::ValidateTargetForCreation' on 'E:\Data2\EMR_GIC_PROD_DATA2.ndf'.
+Msg 3156, Level 16, State 5, Line 1
+File 'EMR_GIC_PROD_DATA2' cannot be restored to 'E:\Data2\EMR_GIC_PROD_DATA2.ndf'. Use WITH MOVE to identify a valid location for the file.
+Msg 3634, Level 16, State 1, Line 1
+The operating system returned the error '5(Access is denied.)' while attempting 'RestoreContainer::ValidateTargetForCreation' on 'E:\Data3\EMR_GIC_PROD_DATA3.ndf'.
+Msg 3156, Level 16, State 5, Line 1
+File 'EMR_GIC_PROD_DATA3' cannot be restored to 'E:\Data3\EMR_GIC_PROD_DATA3.ndf'. Use WITH MOVE to identify a valid location for the file.
+Msg 3634, Level 16, State 1, Line 1
+The operating system returned the error '5(Access is denied.)' while attempting 'RestoreContainer::ValidateTargetForCreation' on 'E:\Data4\EMR_GIC_PROD_DATA4.ndf'.
+Msg 3156, Level 16, State 5, Line 1
+File 'EMR_GIC_PROD_DATA4' cannot be restored to 'E:\Data4\EMR_GIC_PROD_DATA4.ndf'. Use WITH MOVE to identify a valid location for the file.
+Msg 3634, Level 16, State 1, Line 1
+The operating system returned the error '5(Access is denied.)' while attempting 'RestoreContainer::ValidateTargetForCreation' on 'E:\Data5\EMR_GIC_PROD_DATA5.ndf'.
+Msg 3156, Level 16, State 5, Line 1
+File 'EMR_GIC_PROD_DATA5' cannot be restored to 'E:\Data5\EMR_GIC_PROD_DATA5.ndf'. Use WITH MOVE to identify a valid location for the file.
+Msg 3634, Level 16, State 1, Line 1
+The operating system returned the error '5(Access is denied.)' while attempting 'RestoreContainer::ValidateTargetForCreation' on 'E:\Data6\EMR_GIC_PROD_DATA6.ndf'.
+Msg 3156, Level 16, State 5, Line 1
+File 'EMR_GIC_PROD_DATA6' cannot be restored to 'E:\Data6\EMR_GIC_PROD_DATA6.ndf'. Use WITH MOVE to identify a valid location for the file.
+Msg 3119, Level 16, State 1, Line 1
+Problems were identified while planning for the RESTORE statement. Previous messages provide details.
+Msg 3013, Level 16, State 1, Line 1
+RESTORE DATABASE is terminating abnormally.
