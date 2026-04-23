@@ -5,3 +5,8 @@ On Each Secondary:
 sqlALTER DATABASE [YourDatabaseName] 
 SET HADR AVAILABILITY GROUP = [AOG01];
 GO
+
+Msg 1478, Level 16, State 101, Line 1
+The mirror database, "EMR_GIC_PROD", has insufficient transaction log data to preserve the log backup chain of the principal database.  This may happen if a log backup from the principal database has not been taken or has not been restored on the mirror database.
+
+Completion time: 2026-04-23T08:27:29.9462944-04:00
