@@ -1,0 +1,7 @@
+sqlALTER AVAILABILITY GROUP [AOG01]
+ADD DATABASE [YourDatabaseName];
+GO
+On Each Secondary:
+sqlALTER DATABASE [YourDatabaseName] 
+SET HADR AVAILABILITY GROUP = [AOG01];
+GO
