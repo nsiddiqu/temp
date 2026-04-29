@@ -1,0 +1,29 @@
+"external_locations": [
+  {
+    "name": "ext_loc_projectctd_raw",
+    "url": "abfss://raw@<your_storage_account>.dfs.core.windows.net/",
+    "credential_name": "projectctd_storage_credential",
+    "comment": "External location for raw landing zone"
+  },
+  {
+    "name": "ext_loc_projectctd_curated",
+    "url": "abfss://curated@<your_storage_account>.dfs.core.windows.net/",
+    "credential_name": "projectctd_storage_credential",
+    "comment": "External location for curated zone"
+  }
+]
+
+"volumes": [
+  {
+    "schema": "raw",
+    "name": "landing_volume",
+    "type": "EXTERNAL",
+    "path": "abfss://raw@<your_storage_account>.dfs.core.windows.net/volumes/landing/"
+  },
+  {
+    "schema": "curated",
+    "name": "output_volume",
+    "type": "EXTERNAL",
+    "path": "abfss://curated@<your_storage_account>.dfs.core.windows.net/volumes/output/"
+  }
+]
